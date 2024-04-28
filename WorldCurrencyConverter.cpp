@@ -14,7 +14,7 @@ int main() {
 	string currencies;
 
 	// Vector for storing currencies
-	std::vector<std::string> currencies = { "USD", "EUR", "JPY", "GBP", "CNY", "CAD", "AUD/NZD", "ZAR", "CHF", "CNH", "HKD" };
+	std::vector<std::string> currencies = { "USD", "EUR", "JPY", "GBP", "CNY", "CAD", "AUD/NZD", "ZAR", "CHF", "CNH", "HKD"};
 
 	// Display a welcome message to the user
 	std::cout << "********************************************" << '\n';
@@ -62,9 +62,9 @@ int main() {
 
 	// Display for showing the conversion
 	std::cout << std::fixed << setprecision(2);
-	std::cout << '\n' << "______________________________" << '\n';
+	std::cout << '\n' << "------------------------------" << '\n';
 	std::cout << '\n' << "Live Converted Current Balance" << '\n';
-	std::cout << '\n' << "______________________________" << '\n';
+	std::cout << '\n' << "------------------------------" << '\n';
 	std::cout << '\n' << "                              " << '\n';
 	std::cout << "  " << std::setw(5) << "Original Balance" << std::setw(27) << "Converted Balance" << '\n';
 
