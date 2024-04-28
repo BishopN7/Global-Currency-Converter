@@ -14,7 +14,7 @@ int main() {
 	string currencies;
 
 	// Vector for storing currencies
-	std::vector<std::string> currencies = { "USD", "EUR", "JPY", "GBP", "CNY" };
+	std::vector<std::string> currencies = { "USD", "EUR", "JPY", "GBP", "CNY", "CAD", "AUD/NZD", "ZAR", "CHF", "CNH", "HKD" };
 
 	// Display a welcome message to the user
 	std::cout << "********************************************" << '\n';
