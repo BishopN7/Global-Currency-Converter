@@ -1,4 +1,4 @@
-#include "world_currency_converter.h"
+#include "global_currency_converter.h"
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -18,7 +18,7 @@ int main() {
 
 	// Display a welcome message to the user
 	std::cout << "********************************************" << '\n';
-	std::cout << "Welcome to the Worldwide Currency Converter!" << '\n';
+	std::cout << "Welcome to the Global Currency Converter!" << '\n';
 	std::cout << "********************************************" << '\n';
 
 	// User-menu for picking which currency to convert to
