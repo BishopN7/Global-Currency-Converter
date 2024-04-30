@@ -1,5 +1,5 @@
-#ifndef WORLD_CURRENCY_CONVERTER_H
-#define WORLD_CURRENCY_CONVERTER_H
+#ifndef GLOBAL_CURRENCY_CONVERTER_H
+#define GLOBAL_CURRENCY_CONVERTER_H
 
 // Class for world currencies
 class Currency {
@@ -18,7 +18,7 @@ private:
 };
 
 // The primary class for currency conversion
-class WorldCurrencyConverter {
+class GlobalCurrencyConverter {
 public:
 	// Function to convert from one currency to another
 	double convert(double amount, const std::string& from_currency, const std::string& to_currency) const;
