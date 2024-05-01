@@ -1,4 +1,4 @@
-#include "global_currency_converter.h"
+#include "GlobalCurrencyConverter.h"
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -7,25 +7,62 @@
 
 using namespace std;
 
+// Constructor for the currency class
+Currency::Currency(const std::string& code, const std::string& name) : code(code), name(name) {}
+
+// Accessor method for currency code
+std::string Currency::getCode() const {
+	return code;
+}
+
+// Accessor method for currency name
+std::string Currency::getName() const {
+	return name;
+}
+
 int main() {
 	// Main variables for the conversion
 	double exchangeRate, convertedBalance;
 	int initialAmount;
-	string currencies;
+	string fromCurrency, toCurrency;
 
 	// Vector for storing currencies
-	std::vector<std::string> currencies = { "USD", "EUR", "JPY", "GBP", "CNY", "CAD", "AUD/NZD", "ZAR", "CHF", "CNH", "HKD"};
+	std::vector<Currency> currencies = {
+		Currency("USD", "US Dollar"),
+		Currency("EUR", "Euro"),
+		Currency("JPY", "Japanese Yen"),
+		Currency("GBP", "Pounds Sterling"),
+		Currency("CNY", "Chinese Yuan"),
+		Currency("CAD", "Canadian Dollar"),
+		Currency("AUD/NZD", "Australian/New Zealand Dollar"),
+		Currency("ZAR", "South African Rand"),
+		Currency("CHF", "Swiss Franc"),
+		Currency("CNH", "Chinese Yuan Offshore"),
+		Currency("HKD", "Hong Kong Dollar")
+
+	};
 
 	// Display a welcome message to the user
-	std::cout << "********************************************" << '\n';
+	std::cout << "*****************************************" << '\n';
 	std::cout << "Welcome to the Global Currency Converter!" << '\n';
-	std::cout << "********************************************" << '\n';
+	std::cout << "*****************************************" << '\n';
 
-	// User-menu for picking which currency to convert to
-	std::cout << "Please pick currency you would like to convert to: " << '\n';
+	// Instance for the GlobalCurrencyConverterClass
+	GlobalCurrencyConverter converter;
+
+	// User-menu for picking which currency to convert from
+	std::cout << "Please pick which currency you would like to convert from (e.g., USD): " << '\n';
 	for (int i = 0; i < currencies.size(); ++i) {
-		std::cout << i + 1 << ". " << currencies[i] << '\n';
+		std::cout << i + 1 << ". " << currencies[i].getName() << '\n';
 	}
+	std::cin >> fromCurrency;
+
+	// User-menu for the picking which currency to convert to
+	std::cout << "Please pick which currency you would like to convert to (e.g., EUR): " << '\n';
+	for (int i = 0; i < currencies.size(); ++i) {
+		std::cout << i + 1 << ". " << currencies[i].getName() << '\n';
+	}
+	std::cin >> toCurrency;
 
 	// Initial investment do-while loop
 	bool validInput = false;
@@ -42,13 +79,11 @@ int main() {
 		else {
 			validInput = true;
 		}
-	} while (!validInput);
+	} while (initialAmount < 0);
 
-	// Exchange Rate do-while loop
-	bool validInput = false;
-
+	// Obtain user-input for the exchange rate
 	do {
-		std::cout << "Please enter the exchange rate of the country you're traveling to (in decimals): " << '\n';
+		std::cout << "Please enter the exchange rate: " << '\n';
 		std::cin >> exchangeRate;
 
 		// Conditional if the user makes an error 
@@ -58,7 +93,10 @@ int main() {
 		else {
 			validInput = true;
 		}
-	} while (!validInput);
+	} while (exchangeRate < 0);
+
+	// Perform the calculation for the conversion
+	convertedBalance = initialAmount * exchangeRate;
 
 	// Display for showing the conversion
 	std::cout << std::fixed << setprecision(2);
@@ -66,13 +104,8 @@ int main() {
 	std::cout << '\n' << "Live Converted Current Balance" << '\n';
 	std::cout << '\n' << "------------------------------" << '\n';
 	std::cout << '\n' << "                              " << '\n';
-	std::cout << "  " << std::setw(5) << "Original Balance" << std::setw(27) << "Converted Balance" << '\n';
-
-	// Calculate and convert the original balance
-	double convertedBalance = initialAmount * exchangeRate;
-
-	// Display the updated conversion
-	
+	std::cout << '\n' << std::setw(25) << "Original Balance: " << initialAmount << " " << fromCurrency << '\n';
+	std::cout << std::setw(25) << "Converted Balance: " << convertedBalance << " " << toCurrency << '\n';
 
 	// Prompt the user if they want to do another conversion
 	char choice;
@@ -81,18 +114,17 @@ int main() {
 
 	switch (choice) {
 	case 'y':
-	case 'Y';
-		main();
-		break;
-	case 'n';
-	case 'N';
-		// Display a thank message if either of the options are chosen
-		std::cout << "Thank you for using the worldwide currency converter! Have a blessed day." << '\n';
+	case 'Y':
+			main();
+			break;
+	case 'n':
+	case 'N':
+		  // Display a thank message if either of the options are chosen
+		  std::cout << "Thank you for using the global currency converter! Have a blessed day." << '\n';
 	default:
-		std::cout << "Error! Please pick either between (y or n)" << '\n';
+		  std::cout << "Error! Please pick either between (y or n)" << '\n';
 	}
 
 	return 0;
 
 }
-
